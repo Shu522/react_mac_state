@@ -1,28 +1,38 @@
 import { useState } from "react";
 
-const CommentSection = ({ comments }) => {
-  const [comment, setComment] = useState("");
+const CommentSection = ({ comments = [] }) => {
   const [commentList, setCommentList] = useState(comments);
-  const addComment = () => {
-    if (comment) {
+  const [comment, setComment] = useState("");
+
+  const handleAddComment = () => {
+    if (comment.trim()) {
       setCommentList([...commentList, comment]);
       setComment("");
     }
   };
 
+  const handleDeleteComment = (index) => {
+    setCommentList((v) => v.filter((x, i) => i !== index));
+  };
+
   return (
-    <>
+    <div className="comment-section">
       <h3>댓글:</h3>
       {commentList.map((v, i) => (
-        <p key={i}>{v}</p>
+        <div key={i} className="comment-item">
+          <p>{v}</p>
+          {/* 삭제 버튼 추가 */}
+          <button onClick={() => handleDeleteComment(i)}>삭제</button>
+        </div>
       ))}
       <input
         value={comment}
         onChange={(e) => setComment(e.target.value)}
         type="text"
-      ></input>
-      <button onClick={addComment}>추가</button>
-    </>
+        placeholder="댓글을 입력하세요"
+      />
+      <button onClick={handleAddComment}>추가</button>
+    </div>
   );
 };
 

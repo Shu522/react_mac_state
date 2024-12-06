@@ -1,6 +1,7 @@
 import CommentSection from "./component/CommentSection";
 import Like from "./component/Like";
 import PlusButton from "./component/PlusButton";
+import Score from "./component/Score";
 import Toggle from "./component/Toggle";
 
 function App() {
@@ -9,9 +10,10 @@ function App() {
       {/* <PlusButton /> */}
       {/* <Toggle /> */}
       {/* <Like /> */}
-      <CommentSection
+      {/* <CommentSection
         comments={["좋은 글이에요!", "유익한 정보 감사합니다."]}
-      />
+      /> */}
+      <Score />
     </div>
   );
 }
